@@ -31,6 +31,8 @@ class RandomLoggerService
 
     private function init()
     {
+        date_default_timezone_set('UTC');
+        
         if (!is_dir($this->dir)) {
             throw new \Exception('No existe la carpeta ' . $this->dir);
         }
