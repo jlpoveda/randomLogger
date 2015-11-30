@@ -2,13 +2,13 @@
 namespace RandomLogger\ValueObject;
 
 class LogType {
-    const validValues = array('backoffice', 'frontend', 'negocio');
+    public static $validValues = ['backoffice', 'frontend', 'negocio'];
 
     private $logType;
 
     public function __construct($logType)
     {
-        if (!in_array($logType, self::validValues)) {
+        if (!in_array($logType, self::$validValues)) {
             throw new \InvalidArgumentException($logType . ' is not a valid value');
         }
 
@@ -27,6 +27,6 @@ class LogType {
 
     public static function getRandomValue()
     {
-        return self::validValues[rand(0, count(self::validValues) - 1)];
+        return self::$validValues[rand(0, count(self::$validValues) - 1)];
     }
 }
