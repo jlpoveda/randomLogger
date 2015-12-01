@@ -77,6 +77,17 @@ class RandomLoggerService
         return $data;
     }
 
+    private function doNice2Log()
+    {
+        $faker = Faker\Factory::create();
+        $data = implode(' ' , array('[' . $this->getDate() . ']', $this->getSymfony2ApplicationType() . ':',
+            str_replace('z', PHP_EOL, $faker->realText(200, 1)), '[]', '[]'));
+
+        $this->write($data);
+
+        return $data;
+    }
+
     private function getDate()
     {
         return date('M d H:i:s');
@@ -106,6 +117,14 @@ class RandomLoggerService
         $applicationTypes = array('{PHP}', '{Exception}');
 
         return $applicationTypes[rand(0, count($applicationTypes) - 1)];
+    }
+
+    private function getSymfony2ApplicationType()
+    {
+        $type01 = array('request', 'app');
+        $type02 = array('CRITICAL', 'ERROR', 'INFO');
+
+        return $type01[rand(0, count($type01) - 1)] . '.' . $type02[rand(0, count($type02) - 1)];
     }
 
 }

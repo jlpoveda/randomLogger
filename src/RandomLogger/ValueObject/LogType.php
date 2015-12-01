@@ -2,7 +2,7 @@
 namespace RandomLogger\ValueObject;
 
 class LogType {
-    public static $validValues = ['backoffice', 'frontend', 'negocio'];
+    public static $validValues = ['backoffice', 'frontend', 'negocio', 'nice2'];
 
     private $logType;
 
